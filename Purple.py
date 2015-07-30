@@ -1,4 +1,4 @@
-from __future__ import division
+from __future__ import division # true division
 from PlayingCards import Card, Deck
 import random
 
@@ -23,9 +23,9 @@ def guess(color, deck) :
 		return guessBlack(deck)
 	return guessPurple(deck)
 
-guesses = ['r','b','p']
+guesses = ['r', 'b', 'p']
 
-for i in range(0,3) :
+for i in range(0, 3) :
 	print(guesses[i] + ":")
 	success = 0
 	failure = 0
@@ -48,34 +48,32 @@ for i in range(0,3) :
 	print(percent(failure, trials) + "% failure")
 	print(" ")
 
-success = {'r' : 0, 'b' : 0, 'p': 0}
-failure = {'r' : 0, 'b' : 0, 'p': 0}
-trials  = 0
+success = {'r' : 0, 'b' : 0, 'p' : 0}
+failure = {'r' : 0, 'b' : 0, 'p' : 0}
+trials  = {'r' : 0, 'b' : 0, 'p' : 0}
+
 for n in range(0, 100) :
 	deck = Deck()
 	try :
 		while True :
 			pick = random.choice(guesses)
-			print(pick)
 			result = guess(pick, deck)
-			print(result)
-			trials += 1
-			print(trials)
 			if result == True :
-				success[guess] += 1
+				success[pick] += 1
 			else :
-				failure[guess] += 1
+				failure[pick] += 1
+			trials[pick] += 1
 	except :
 		pass
 
 assert trials > 0
 
 print("red:")
-print(percent(success['r'], trials) + "% success")
-print(percent(failure['r'], trials) + "% failure")
-print("black:")
-print(percent(success['b'], trials) + "% success")
-print(percent(failure['b'], trials) + "% failure")
-print("purple:")
-print(percent(success['p'], trials) + "% success")
-print(percent(failure['p'], trials) + "% failure")
+print(percent(success['r'], trials['r']) + "% success")
+print(percent(failure['r'], trials['r']) + "% failure")
+print("\nblack:")
+print(percent(success['b'], trials['b']) + "% success")
+print(percent(failure['b'], trials['b']) + "% failure")
+print("\npurple:")
+print(percent(success['p'], trials['p']) + "% success")
+print(percent(failure['p'], trials['p']) + "% failure")
