@@ -17,7 +17,6 @@ class Card :
 		return self.color == 'r'
 
 class Deck :
-
 	def __init__(self) :
 		self.master = []
 		for i in [2, 3, 4, 5, 6, 7, 8, 9, 10, 'J', 'Q', 'K', 'A'] :
@@ -28,8 +27,11 @@ class Deck :
 		self.shuffle()
 
 	def nextCard(self) :
-		for card in self.cards :
-			yield card
+		if len(self.cards) == 0 :
+			raise IndexError
+		card = self.cards[0]
+		self.cards.pop(0)
+		return card
 
 	def shuffle(self) :
 		copy = self.master
@@ -46,22 +48,3 @@ class Deck :
 
 	def __len__(self) :
 		return len(self.cards)
-
-def guessBlack(deck) :
-	# return deck.nextCard().red()
-	return False
-
-def guessRed(deck) :
-	# return deck.nextCard().black()
-	return False
-
-def guess(color, deck) :
-	if color == 'r' :
-		return guessRed(deck)
-	if color == 'b' :
-		return guessBlack(deck)
-	return guessPurple(deck)
-
-deck = Deck()
-for i in range(0, 10) :
-	print(guess('r', deck))
