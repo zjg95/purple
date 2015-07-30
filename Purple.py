@@ -1,5 +1,9 @@
 from __future__ import division
 from PlayingCards import Card, Deck
+import random
+
+def percent(piece, total) :
+	return str((piece / total) * 100)
 
 def guessBlack(deck) :
 	return deck.nextCard().black()
@@ -19,47 +23,59 @@ def guess(color, deck) :
 		return guessBlack(deck)
 	return guessPurple(deck)
 
-deck = Deck()
-print("Red:")
-success = 0
-failure = 0
-for i in range(0, 52) :
-	result = guess('r', deck)
-	if result == True :
-		success += 1
-	else :
-		failure += 1
-print(success)
-print(failure)
-print(str(success / 52) + "% success, " + str(failure / 52) + "% failure")
+guesses = ['r','b','p']
 
-print(" ")
-deck = Deck()
-print("Black:")
-success = 0
-failure = 0
-for i in range(0, 52) :
-	result = guess('b', deck)
-	if result == True :
-		success += 1
-	else :
-		failure += 1
-print(success)
-print(failure)
-print(str(success / 52) + "% success, " + str(failure / 52) + "% failure")
+for i in range(0,3) :
+	print(guesses[i] + ":")
+	success = 0
+	failure = 0
+	trials  = 0
+	for n in range(0, 100) :
+		deck = Deck()
+		try :
+			while True :
+				result = guess(guesses[i], deck)
+				if result == True :
+					success += 1
+				else :
+					failure += 1
+				trials += 1
+		except :
+			pass
+	print(success)
+	print(failure)
+	print(percent(success, trials) + "% success")
+	print(percent(failure, trials) + "% failure")
+	print(" ")
 
-print(" ")
-deck = Deck()
-print("Purple:")
-success = 0
-failure = 0
-for i in range(0, 26) :
-	result = guess('p', deck)
-	if result == True :
-		success += 1
-	else :
-		failure += 1
-print(success)
-print(failure)
-print(str(success / 26) + "% success, " + str(failure / 26) + "% failure")
+success = {'r' : 0, 'b' : 0, 'p': 0}
+failure = {'r' : 0, 'b' : 0, 'p': 0}
+trials  = 0
+for n in range(0, 100) :
+	deck = Deck()
+	try :
+		while True :
+			pick = random.choice(guesses)
+			print(pick)
+			result = guess(pick, deck)
+			print(result)
+			trials += 1
+			print(trials)
+			if result == True :
+				success[guess] += 1
+			else :
+				failure[guess] += 1
+	except :
+		pass
 
+assert trials > 0
+
+print("red:")
+print(percent(success['r'], trials) + "% success")
+print(percent(failure['r'], trials) + "% failure")
+print("black:")
+print(percent(success['b'], trials) + "% success")
+print(percent(failure['b'], trials) + "% failure")
+print("purple:")
+print(percent(success['p'], trials) + "% success")
+print(percent(failure['p'], trials) + "% failure")
