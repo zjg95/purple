@@ -8,7 +8,9 @@ def guessRed(deck) :
 	return deck.nextCard().red()
 
 def guessPurple(deck) :
-	return False #to be updated	
+	c1 = deck.nextCard()
+	c2 = deck.nextCard()
+	return (c1.black() and c2.red()) or (c1.red() and c2.black())	
 
 def guess(color, deck) :
 	if color == 'r' :
