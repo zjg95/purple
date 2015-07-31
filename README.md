@@ -8,3 +8,6 @@ While the probability of guessing black or red is expected to be 50%, the probab
 To prove this, I wrote a quick program in python to model this game, and see the results. Interestingly enough, the probability of purple succeeding fluctuates between 47%-68%. Over the course of several trials though, this average converges to somewhere around 52%, which is higher than red/black which consistently stay at 50%. 
 
 This surprisingly proves that the probability of purple succeeding is greater than red or black.
+
+#### Running the program
+To run the program, you can use python2. The main file is purple.py.
