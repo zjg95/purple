@@ -10,4 +10,5 @@ To prove this, I wrote a quick program in python to model this game, and see the
 This surprisingly proves that the probability of purple succeeding is greater than red or black.
 
 #### Running the program
-To run the program, you can use python2. The main file is purple.py.
+To run the program, you can use python2.
+python purple.py
