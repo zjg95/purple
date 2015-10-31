@@ -11,4 +11,5 @@ This surprisingly proves that the probability of purple succeeding is greater th
 
 #### Running the program
 To run the program, you can use python2.
+
 python purple.py
